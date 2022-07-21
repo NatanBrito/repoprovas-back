@@ -1,18 +1,19 @@
-import prisma from "../src/config/db.js";
+// import prisma from "../src/config/db.js";
 
-// create admin user
-async function main() {
-  // cria se já não existe -> se já existe, faz nada
-  await prisma.user.create({
-    data: { email: "admin2@gmail.com", password: "vai quebrar o db" },
-  });
-}
+// // create admin user
+// async function main() {
+//   // cria se já não existe -> se já existe, faz nada
+//   await prisma.user.create({
+//     data: { email: "admin2@gmail.com", password: "vai quebrar o JWT" },
+//   });
+//   console.log("PASSEI AQUI");
+// }
 
-main()
-  .catch((e) => {
-    console.log(e);
-    process.exit(1);
-  })
-  .finally(async () => {
-    await prisma.$disconnect();
-  });
+// main()
+//   .catch((e) => {
+//     console.log(e);
+//     process.exit(1);
+//   })
+//   .finally(async () => {
+//     await prisma.$disconnect();
+//   });

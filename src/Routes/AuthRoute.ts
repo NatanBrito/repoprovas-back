@@ -1,9 +1,11 @@
-import { Request, Response, Router } from "express";
+import { Signin, Signup } from "../controllers/AuthController.js";
+import schemaValidateMiddleware from "../middlewares/validateSchemaMiddleware.js";
 
+import { Router } from "express";
+import { SignIn, SignUp } from "../schemas/authSchemas.js";
 const authRoute = Router();
 
-authRoute.post("/", (req: Request, res: Response) => {
-  res.sendStatus(201);
-});
+authRoute.post("/signin", schemaValidateMiddleware(SignIn), Signin);
+authRoute.post("/signup", schemaValidateMiddleware(SignUp), Signup);
 
 export default authRoute;
