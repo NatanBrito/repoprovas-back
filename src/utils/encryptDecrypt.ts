@@ -4,7 +4,7 @@ import jwt from "jsonwebtoken";
 
 interface dataJwt {
   email: string;
-  id: string;
+  id: number;
 }
 
 dotenv.config();

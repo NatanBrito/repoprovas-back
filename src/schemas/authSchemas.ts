@@ -11,11 +11,11 @@ interface signin {
 }
 export const SignIn = Joi.object<signin>({
   email: Joi.string().email().required(),
-  password: Joi.string().length(10),
+  password: Joi.string().required(),
 });
 
 export const SignUp = Joi.object<signup>({
   email: Joi.string().email().required(),
-  password: Joi.string().length(10).required(),
+  password: Joi.string().required(),
   confirmPassword: Joi.ref("password"),
 });
