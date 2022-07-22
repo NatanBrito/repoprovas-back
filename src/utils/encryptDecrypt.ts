@@ -2,12 +2,12 @@ import Cryptr from "cryptr";
 import dotenv from "dotenv";
 import jwt from "jsonwebtoken";
 
+dotenv.config();
 interface dataJwt {
   email: string;
   id: number;
 }
 
-dotenv.config();
 const cryptr = new Cryptr(process.env.ENCRYPTPASS);
 export function EncryptPass(password: string) {
   const encrypt = cryptr.encrypt(password);
@@ -21,6 +21,12 @@ export function createToken(data: dataJwt) {
   return generate;
 }
 export function decryptToken(token: string) {
-  const verify = jwt.verify(token, process.env.JWTPASS);
-  return verify;
+  console.log({ utilToken: token });
+  try {
+    const verify = jwt.verify(token, process.env.JWTPASS);
+    console.log({ utilTokenAfter: verify });
+    return verify;
+  } catch (e) {
+    console.log({ erro: e });
+  }
 }
