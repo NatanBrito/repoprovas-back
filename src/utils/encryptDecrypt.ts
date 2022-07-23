@@ -17,14 +17,12 @@ export function DecryptPass(password: string) {
   return cryptr.decrypt(password);
 }
 export function createToken(data: dataJwt) {
-  const generate = jwt.sign(data, process.env.JWTPASS);
+  const generate = jwt.sign(data, process.env.JWT_PASS);
   return generate;
 }
 export function decryptToken(token: string) {
-  console.log({ utilToken: token });
   try {
-    const verify = jwt.verify(token, process.env.JWTPASS);
-    console.log({ utilTokenAfter: verify });
+    const verify = jwt.verify(token, process.env.JWT_PASS);
     return verify;
   } catch (e) {
     console.log({ erro: e });
