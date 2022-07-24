@@ -1,26 +1,64 @@
 import app from "../app.js";
 import supertest from "supertest";
+import fake from "./factory/authData.js";
 
 describe("POST Auth", () => {
+  const email = fake.email();
+  const password = fake.password();
   it(" teste do signUp", async () => {
-    const result = await supertest(app).post("/signup").send({
-      email: "naaatan@gmail.com",
-      password: "senhasenha",
-      confirmPassword: "senhasenha",
-    });
-    const status = result.status;
-
-    expect(status).toEqual(201);
+    const bodySignUp = {
+      email: email,
+      password: password,
+      confirmPassword: password,
+    };
+    const result = await supertest(app).post("/signUp").send(bodySignUp);
+    expect(result.status).toEqual(201);
   });
-  it("given a valid task it should return 201", async () => {
+  it("teste do signIn", async () => {
     const body = {
-      email: "teste20@gmail.com",
-      password: "senhasenha",
+      email: email,
+      password: password,
     };
 
-    const result = await supertest(app).post("/signin").send(body);
-    const status = result.status;
+    setTimeout(async () => {
+      const result = await supertest(app).post("/signIn").send(body);
+      expect(result.status).toEqual(200);
+    }, 500);
+  });
+  it("test invalidPassword", async () => {
+    const body = {
+      email: email,
+      password: fake.password(),
+    };
 
-    expect(status).toEqual(200);
+    const result = await supertest(app).post("/signIn").send(body);
+    expect(result.status).toEqual(404);
+  });
+  it("test send token", async () => {
+    const body = {
+      email: email,
+      password: password,
+    };
+
+    setTimeout(async () => {
+      const result = await supertest(app).post("/signIn").send(body);
+      expect(result.status).toEqual(200);
+      expect(result.body.token).toBeDefined();
+    }, 500);
+  });
+  it(" test invalid schema signUp", async () => {
+    const bodySignUp = {
+      email: email,
+      confirmPassword: password,
+    };
+    const result = await supertest(app).post("/signUp").send(bodySignUp);
+    expect(result.status).toEqual(422);
+  });
+  it(" test invalid schema signIn", async () => {
+    const bodySignUp = {
+      password: password,
+    };
+    const result = await supertest(app).post("/signIn").send(bodySignUp);
+    expect(result.status).toEqual(422);
   });
 });
