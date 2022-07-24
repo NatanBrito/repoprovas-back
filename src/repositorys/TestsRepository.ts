@@ -15,16 +15,16 @@ export async function getByDisciplines() {
         select: {
           id: true,
           name: true,
-          teachersDisciplines: {
+          teacherDisciplines: {
             select: {
-              Disciplines: { select: { name: true } },
-              Teachers: { select: { name: true } },
+              discipline: { select: { name: true } },
+              teacher: { select: { name: true } },
               tests: {
                 select: {
                   id: true,
                   name: true,
                   pdfUrl: true,
-                  Categories: {
+                  category: {
                     select: { id: true, name: true },
                   },
                 },
@@ -40,14 +40,14 @@ export async function getByTeacher() {
   return await prisma.teachersDisciplines.findMany({
     select: {
       id: true,
-      Teachers: { select: { name: true } },
-      Disciplines: { select: { name: true } },
+      teacher: { select: { name: true } },
+      discipline: { select: { name: true } },
       tests: {
         select: {
           id: true,
           name: true,
           pdfUrl: true,
-          Categories: { select: { id: true, name: true } },
+          category: { select: { id: true, name: true } },
         },
       },
     },
