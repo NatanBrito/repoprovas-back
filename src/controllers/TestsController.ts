@@ -7,6 +7,12 @@ export async function CreateTests(req: Request, res: Response) {
   res.status(200).send("succesfully created");
 }
 export async function getByDisciplines(req: Request, res: Response) {
-  const teste = await testsService.testeOrderBy();
-  res.status(200).send(teste);
+  const dataDisciplines = await testsService.GetByDisciplines();
+
+  res.status(200).send(dataDisciplines);
+}
+export async function getByTeacher(req: Request, res: Response) {
+  const DataByTeachers = await testsService.GetByTeacher();
+
+  res.status(200).send(DataByTeachers);
 }

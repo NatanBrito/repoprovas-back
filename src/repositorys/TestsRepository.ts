@@ -5,11 +5,8 @@ export type dataCreateTest = Omit<tests, "id">;
 export async function createTest(data: dataCreateTest) {
   return await prisma.tests.create({ data });
 }
+
 export async function getByDisciplines() {
-  // return await prisma.tests.();
-  //   TODO fazer a query pra buscar no banco ordenado por disciplinas
-}
-export async function testeDoOrderBy() {
   return await prisma.terms.findMany({
     select: {
       id: true,
@@ -34,6 +31,23 @@ export async function testeDoOrderBy() {
               },
             },
           },
+        },
+      },
+    },
+  });
+}
+export async function getByTeacher() {
+  return await prisma.teachersDisciplines.findMany({
+    select: {
+      id: true,
+      Teachers: { select: { name: true } },
+      Disciplines: { select: { name: true } },
+      tests: {
+        select: {
+          id: true,
+          name: true,
+          pdfUrl: true,
+          Categories: { select: { id: true, name: true } },
         },
       },
     },

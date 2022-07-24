@@ -13,9 +13,9 @@ testsRoute.post(
   testsController.CreateTests
 );
 testsRoute.get(
-  "/getDisciplinesTests",
+  "/testsByDisciplines",
   verifyToken,
   testsController.getByDisciplines
 );
-
+testsRoute.get("/testsByTeacher", verifyToken, testsController.getByTeacher);
 export default testsRoute;
