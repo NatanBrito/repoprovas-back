@@ -6,3 +6,7 @@ export async function createTest(data: testsRepository.dataCreateTest) {
 export async function OrderByDiscisplinesTests() {
   return await testsRepository.getByDisciplines();
 }
+
+export async function testeOrderBy(){
+return await testsRepository.testeDoOrderBy();
+};

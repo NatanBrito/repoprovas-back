@@ -7,5 +7,6 @@ export async function CreateTests(req: Request, res: Response) {
   res.status(200).send("succesfully created");
 }
 export async function getByDisciplines(req: Request, res: Response) {
-  res.status(200).send("succesfully created");
+  const teste = await testsService.testeOrderBy();
+  res.status(200).send(teste);
 }
