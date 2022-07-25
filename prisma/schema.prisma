@@ -21,7 +21,6 @@ model tests {
   pdfUrl              String
   categoryId          Int
   teacherDisciplineId Int
-
   category          categories          @relation(fields: [categoryId], references: [id])
   TeachersDisciplines teachersDisciplines @relation(fields: [teacherDisciplineId], references: [id])
 }
