@@ -6,9 +6,8 @@ export async function Signin(req: Request, res: Response) {
   const { email, password } = req.body;
   const findData = await AuthService.findUser(email);
   await AuthService.verifyPassword(password, findData.password);
-  res
-    .status(200)
-    .send({ token: utils.createToken({ email, id: findData.id }) });
+  const token: string = utils.createToken({ email, id: findData.id });
+  res.status(200).send({ token });
 }
 export async function Signup(req: Request, res: Response) {
   const { email, password } = req.body;
