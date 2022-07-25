@@ -12,7 +12,7 @@ export async function getByDisciplines(req: Request, res: Response) {
   res.status(200).send({ tests });
 }
 export async function getByTeacher(req: Request, res: Response) {
-  const DataByTeachers = await testsService.GetByTeacher();
+  const tests = await testsService.GetByTeacher();
 
-  res.status(200).send(DataByTeachers);
+  res.status(200).send({ tests });
 }
