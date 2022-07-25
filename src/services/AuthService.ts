@@ -1,5 +1,6 @@
 import * as AuthRepository from "../repositorys/AuthRepository.js";
 import * as utils from "../utils/encryptDecrypt.js";
+
 export async function findByEmail(email: string) {
   const searchRegister = await AuthRepository.findByEmail(email);
   return searchRegister;

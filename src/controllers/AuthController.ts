@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 
 import * as AuthService from "../services/AuthService.js";
 import * as utils from "../utils/encryptDecrypt.js";
+
 export async function Signin(req: Request, res: Response) {
   const { email, password } = req.body;
   const findData = await AuthService.findUser(email);
