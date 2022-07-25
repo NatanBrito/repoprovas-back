@@ -16,8 +16,8 @@ describe("POST Auth", () => {
   });
   it("teste do signIn", async () => {
     const body = {
-      email: email,
-      password: password,
+      email: "natan@gmail.com",
+      password: "senhasenha",
     };
 
     setTimeout(async () => {
