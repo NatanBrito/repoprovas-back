@@ -7,9 +7,9 @@ export async function CreateTests(req: Request, res: Response) {
   res.status(200).send("succesfully created");
 }
 export async function getByDisciplines(req: Request, res: Response) {
-  const dataDisciplines = await testsService.GetByDisciplines();
+  const tests = await testsService.GetByDisciplines();
 
-  res.status(200).send(dataDisciplines);
+  res.status(200).send({ tests });
 }
 export async function getByTeacher(req: Request, res: Response) {
   const DataByTeachers = await testsService.GetByTeacher();
